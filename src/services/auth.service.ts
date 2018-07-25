@@ -1,10 +1,10 @@
-import { LocalUser } from './../models/local_user';
-import { CredenciaisDTO } from './../models/credenciais.dto';
-import { Injectable } from "../../node_modules/@angular/core";
-import { HttpClient } from '../../node_modules/@angular/common/http';
+import { LocalUser } from '../models/local_user';
+import { CredenciaisDTO } from '../models/credenciais.dto';
+import { HttpClient } from '@angular/common/http';
 import { API_CONFIG } from '../config/api.config';
 import { StorageService } from './storage.service';
 import { JwtHelper } from 'angular2-jwt';
+import { Injectable } from '../../node_modules/@angular/core';
 
 @Injectable()
 export class AuthService{
@@ -18,6 +18,13 @@ export class AuthService{
     authenticate(creds : CredenciaisDTO){
         return this.http.post(`${API_CONFIG.baseUrl}/login`, creds, 
         {
+            observe:'response',
+            responseType: 'text' 
+        });
+    }
+
+    refreshToken(){
+        return this.http.post(`${API_CONFIG.baseUrl}/auth/refresh_token`, {}, {
             observe:'response',
             responseType: 'text' 
         });

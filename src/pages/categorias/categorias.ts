@@ -1,5 +1,5 @@
-import { CategoriaDTO } from './../../models/categoria.dto';
-import { CategoriaService } from './../../services/domain/categoria.service';
+import { CategoriaDTO } from '../../models/categoria.dto';
+import { CategoriaService } from '../../services/domain/categoria.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { API_CONFIG } from '../../config/api.config';
