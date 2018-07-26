@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Signup</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="formGroup" (ngSubmit)="signupUser(); $event.preventDefault()">
+    <ion-item>
+      <ion-label stacked>Nome*</ion-label>
+      <ion-input formControlName="nome" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Número*</ion-label>
+      <ion-input formControlName="numero" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Email*</ion-label>
+      <ion-input formControlName="email" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Senha*</ion-label>
+      <ion-input formControlName="senha" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Tipo Sangue*</ion-label>
+      <ion-input formControlName="tipoSangue" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Pelotão*</ion-label>
+      <ion-input formControlName="pelotao" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Patente*</ion-label>
+      <ion-input formControlName="patente" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Telefone 1*</ion-label>
+      <ion-input formControlName="telefone1" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Telefone 2</ion-label>
+      <ion-input formControlName="telefone2" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Status</ion-label>
+      <ion-input formControlName="status" type="text"></ion-input>
+    </ion-item>
+    <button ion-button block type="submit" [disabled]="formGroup.invalid">Criar conta</button>
+  </form>
+</ion-content>
