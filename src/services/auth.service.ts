@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { API_CONFIG } from '../config/api.config';
 import { StorageService } from './storage.service';
 import { JwtHelper } from 'angular2-jwt';
-import { Injectable } from '../../node_modules/@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthService{

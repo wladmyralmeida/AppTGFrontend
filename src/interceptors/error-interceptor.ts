@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx'; // IMPORTANTE: IMPORT ATUALIZADO
+import { Observable } from 'rxjs'; // IMPORTANTE: IMPORT ATUALIZADO
 import { StorageService } from '../services/storage.service';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+import { FieldMessage } from '../models/fieldmessage';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -38,6 +39,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                         this.handle403();
                         break;
 
+                    case 422:
+                        this.handle422(errorObj);
+                        break;
+
                     default:
                         this.handleDefaultEror(errorObj);
                 }
@@ -46,16 +51,31 @@ export class ErrorInterceptor implements HttpInterceptor {
             }) as any;
     }
 
-    //O possível localUser que tava no Storage está inválido, então remove.
-    handle403() {
-        this.storage.setLocalUser(null);
-    }
-
     handle401() {
         let alert = this.alertCtrl.create({
             title: 'Erro 401: falha de autenticação',
             message: 'Email ou senha incorretos',
             //obriga o usuário a apertar no botão antes de fechar o alert. Dando opção de incremento de ação.
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: 'Ok'
+                }
+            ]
+        });
+        alert.present();
+    }
+
+    //O possível localUser que tava no Storage está inválido, então remove.
+    handle403() {
+        this.storage.setLocalUser(null);
+    }
+
+    //lista de erros com cada um dos erros para o usuário ler e corrigir.
+    handle422(errorObj) {
+        let alert = this.alertCtrl.create({
+            title: 'Erro 422: Validação',
+            message: this.listErrors(errorObj.errors),
             enableBackdropDismiss: false,
             buttons: [
                 {
@@ -78,6 +98,14 @@ export class ErrorInterceptor implements HttpInterceptor {
             ]
         });
         alert.present();
+    }
+
+    private listErrors(messages : FieldMessage[]) : string {
+        let s : string = '';
+        for (var i=0; i<messages.length; i++) {
+            s = s + '<p><strong>' + messages[i].fieldName + "</strong>: " + messages[i].message + '</p>';
+        }
+        return s;
     }
 
 }

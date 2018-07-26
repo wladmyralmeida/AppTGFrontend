@@ -21,17 +21,25 @@ export class SignupPage {
     public alertCtrl: AlertController) {
 
     this.formGroup = this.formBuilder.group({
-      nome: ['wlad silva', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
-      numero : ['32', [Validators.required]],
-      email: ['cursoscpdti@gmail.com', [Validators.required, Validators.email]],
-      senha : ['123', [Validators.required]],
+      nome: ['wwwlad', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
+      numero : ['10', [Validators.required]],
+      email: ['cursoscpd@gmail.com', [Validators.required, Validators.email]],
+      senha : ['w123', [Validators.required]],
       tipoSangue : ['A+', [Validators.required]],
       pelotao : ['Charlie', [Validators.required]],
       patente : ['Monitor', [Validators.required]],
-      telefone1 : ['977261827', [Validators.required]],
+      telefone1 : ['93838392', [Validators.required]],
       telefone2 : ['', []],  
       status : ['Ativo', [Validators.required]],
     });
+  }
+  
+  signupUser() {
+    this.usuarioService.insert(this.formGroup.value)
+      .subscribe(response => {
+        this.showInsertOk();
+      },
+      error => {});
   }
 
   showInsertOk() {
@@ -42,6 +50,7 @@ export class SignupPage {
       buttons: [
         {
           text: 'Ok',
+          //função anonima que desempilha essa página.
           handler: () => {
             this.navCtrl.pop();
           }

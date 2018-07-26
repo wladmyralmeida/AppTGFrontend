@@ -1,4 +1,4 @@
-import { AuthInterceptorProvider } from './../interceptors/auth-interceptor';
+import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { CategoriaService } from '../services/domain/categoria.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
