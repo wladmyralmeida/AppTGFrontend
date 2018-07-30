@@ -21,18 +21,22 @@
     <ion-item>
       <ion-label stacked>Senha*</ion-label>
       <ion-input formControlName="senha" type="password"></ion-input>
-    </ion-item>
+    </ion-item> 
     <ion-item>
-      <ion-label stacked>Tipo Sangue*</ion-label>
-      <ion-input formControlName="tipoSangue" type="text"></ion-input>
+      <ion-label stacked>Organização Militar*</ion-label>
+      <ion-input formControlName="organizacaoMilitar" type="text"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label stacked>Pelotão*</ion-label>
+     <ion-item>
+      <ion-label stacked>Pelotão</ion-label>
       <ion-input formControlName="pelotao" type="text"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label stacked>Patente*</ion-label>
+      <ion-label stacked>Patente</ion-label>
       <ion-input formControlName="patente" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Tipo Sanguíneo</ion-label>
+      <ion-input formControlName="tipoSangue" type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Telefone 1*</ion-label>
@@ -41,10 +45,6 @@
     <ion-item>
       <ion-label stacked>Telefone 2</ion-label>
       <ion-input formControlName="telefone2" type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Status</ion-label>
-      <ion-input formControlName="status" type="text"></ion-input>
     </ion-item>
     <button ion-button block type="submit" [disabled]="formGroup.invalid">Criar conta</button>
   </form>

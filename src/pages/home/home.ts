@@ -12,8 +12,8 @@ import { AuthService } from '../../services/auth.service';
 export class HomePage {
 
   creds : CredenciaisDTO = {
-    email : "",
-    senha : ""
+    email: "",
+    senha: ""
   };
 
   constructor(
@@ -26,28 +26,29 @@ export class HomePage {
   ionViewWillEnter() {
     this.menu.swipeEnable(false);
   }
-  
+    
   ionViewDidLeave() {
     this.menu.swipeEnable(true);
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.auth.refreshToken()
-    .subscribe(response => {
-      this.auth.successfulLogin(response.headers.get('Authorization'));
-      this.navCtrl.setRoot('CategoriasPage');
-    },
-    error => {});
+      .subscribe(response => {
+        this.auth.successfulLogin(response.headers.get('Authorization'));
+        this.navCtrl.setRoot('CategoriasPage');
+      },
+      error => {});  
   }
 
-  login(){
+  login() {
     this.auth.authenticate(this.creds)
-    .subscribe(response => {
-      this.auth.successfulLogin(response.headers.get('Authorization'));
-      this.navCtrl.setRoot('CategoriasPage');
-    },
-    error => {});
+      .subscribe(response => {
+        this.auth.successfulLogin(response.headers.get('Authorization'));
+        this.navCtrl.setRoot('CategoriasPage');
+      },
+      error => {});    
   }
+ 
   signup() {
     this.navCtrl.push('SignupPage');
   }
