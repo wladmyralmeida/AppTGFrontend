@@ -12,11 +12,11 @@ import { LoadingController } from 'ionic-angular/components/loading/loading-cont
 })
 export class ProdutosPage {
 
-  items : ProdutoDTO[] = [];
-  page : number = 0;
+  items: ProdutoDTO[] = [];
+  page: number = 0;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public produtoService: ProdutoService,
     public loadingCtrl: LoadingController) {
@@ -37,26 +37,31 @@ export class ProdutosPage {
         loader.dismiss();
         console.log(this.page);
         console.log(this.items);
+        //Somente é chamado depois de chegados os produtos
         this.loadImageUrls(start, end);
       },
-      error => {
-        loader.dismiss();
-      });
+        error => {
+          loader.dismiss();
+        });
   }
 
+  //Como é uma página de múltiplos produtos que estão em items[],percorre a lista de produtos e pega uma
+  //referência para o produto e chama o serviço passando o id do produto
+  //se a imagem existir, pega a referencia do imageUrl e montar a url novamente.
   loadImageUrls(start: number, end: number) {
-    for (var i=start; i<=end; i++) {
+    for (var i = start; i <= end; i++) {
       let item = this.items[i];
       this.produtoService.getSmallImageFromBucket(item.id)
         .subscribe(response => {
           item.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${item.id}-small.jpg`;
         },
-        error => {});
+          error => { });
     }
-  }  
+  }
 
-  showDetail(produto_id : string) {
-    this.navCtrl.push('ProdutoDetailPage', {produto_id: produto_id});
+  //Envia o produto id como parâmetro na navegação, criando um objeto com o valor sendo seu id.
+  showDetail(produto_id: string) {
+    this.navCtrl.push('ProdutoDetailPage', { produto_id: produto_id });
   }
 
   presentLoading() {

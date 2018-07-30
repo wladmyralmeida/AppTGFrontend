@@ -23,6 +23,9 @@ export class CartService {
         return cart;
     }
 
+    //se o carrinho já existe, recebe um predicado como argumento e encontra um produto cujo produto tem o
+    //mesmo id do produto que se está querendo inserir.
+    //se não existir automaticamente retorna -1, passando um acréscimo na quantidade e o objeto produto att;
     addProduto(produto: ProdutoDTO) : Cart {
         let cart = this.getCart();
         let position = cart.items.findIndex(x => x.produto.id == produto.id);

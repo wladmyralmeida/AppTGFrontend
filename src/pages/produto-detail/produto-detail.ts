@@ -22,6 +22,8 @@ export class ProdutoDetailPage {
   }
 
   ionViewDidLoad() {
+    //recebe o id do produto que foi passado na navegação, faz a requisição, se inscreve para 
+    //receber a resposta e verifica se a url da imagem existe.
     let produto_id = this.navParams.get('produto_id');
     this.produtoService.findById(produto_id)
       .subscribe(response => {
