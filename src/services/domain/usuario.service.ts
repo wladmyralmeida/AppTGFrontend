@@ -1,4 +1,4 @@
-import { ImageUtilService } from './../image-util.service';
+import { ImageUtilService } from '../image-util.service';
 import { StorageService } from '../storage.service';
 import { API_CONFIG } from '../../config/api.config';
 import { Observable } from 'rxjs';
@@ -23,9 +23,12 @@ export class UsuarioService {
         });
     }
 
+    findById(id: string) {
+        return this.http.get(`${API_CONFIG.baseUrl}/usuarios/${id}`);
+    }
 
-    findByEmail(email: string): Observable<UsuarioDTO> {
-        return this.http.get<UsuarioDTO>(`${API_CONFIG.baseUrl}/usuarios/email?value=${email}`);
+    findByEmail(email: string) {
+        return this.http.get(`${API_CONFIG.baseUrl}/usuarios/email?value=${email}`);
     }
 
     getImageFromBucket(id: string): Observable<any> {

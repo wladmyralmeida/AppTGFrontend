@@ -1,6 +1,6 @@
 import { UsuarioService } from './../../services/domain/usuario.service';
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PedidoDTO } from '../../models/pedido.dto';
 import { CartItem } from '../../models/cart-item';
 import { CartService } from '../../services/domain/cart.service';
@@ -31,8 +31,8 @@ export class OrderConfirmationPage {
 
   ionViewDidLoad() {
     this.cartItems = this.cartService.getCart().items;
-////ASDUSAGDYASGDSAYGDSAD>>>>>>>>>
-    this.usuarioService.findByEmail(this.pedido.usuario.id)
+
+    this.usuarioService.findById(this.pedido.usuario.id)
       .subscribe(response => {
         this.usuario = response as UsuarioDTO;
       },

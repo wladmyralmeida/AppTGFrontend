@@ -58,12 +58,12 @@ export class CartPage {
     return this.cartService.total();
   }  
 
+  //Método de Continuar Comprando
   goOn() {
     this.navCtrl.setRoot('CategoriasPage');
   }
 
-  //Check
   checkout() {
-    this.navCtrl.push('OrderConfirmationPage');
+    this.navCtrl.push('PaymentPage');
   }
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_CONFIG } from '../../config/api.config';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { ProdutoDTO } from '../../models/produto.dto';
 
 @Injectable()
@@ -19,12 +19,12 @@ export class ProdutoService {
   }
 
   getSmallImageFromBucket(id: string): Observable<any> {
-    let url = `${API_CONFIG.bucketBaseUrl}/produtos${id}-small.jpg`
+    let url = `${API_CONFIG.bucketBaseUrl}/prod${id}-small.jpg`
     return this.http.get(url, { responseType: 'blob' });
   }
 
   getImageFromBucket(id: string): Observable<any> {
-    let url = `${API_CONFIG.bucketBaseUrl}/produtos${id}.jpg`
+    let url = `${API_CONFIG.bucketBaseUrl}/prod${id}.jpg`
     return this.http.get(url, { responseType: 'blob' });
   }
 }

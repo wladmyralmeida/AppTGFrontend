@@ -1,3 +1,4 @@
+import { ServicoDTO } from './servico.dto';
 export interface UsuarioDTO{
     id : string;
     nome : string;
@@ -10,4 +11,5 @@ export interface UsuarioDTO{
     tipoSangue : string;
     status : boolean;
     imageUrl? : string;
+    servico? : ServicoDTO;
 }

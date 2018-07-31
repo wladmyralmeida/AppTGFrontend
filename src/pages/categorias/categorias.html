@@ -7,9 +7,17 @@
   </ion-navbar>
 </ion-header>
 
+<!--Comando de navegação na tag Html, com ícone ao topo direito da página, levando à página de carrinho-->
 <ion-content padding>
   <ion-fab top right edge>
-    <button navPush="CartPage" ion-fab mini><ion-icon name="cart"></ion-icon></button>
+    <button navPush="CartPage" ion-fab mini>
+      <ion-icon name="cart"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-fab top right edge>
+    <button navPush="CartPage" ion-fab mini>
+      <ion-icon name="cart"></ion-icon>
+    </button>
   </ion-fab>
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="showProdutos(item.id)">

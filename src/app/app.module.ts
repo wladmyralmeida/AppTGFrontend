@@ -1,4 +1,4 @@
-import { UsuarioService } from './../services/domain/usuario.service';
+import { UsuarioService } from '../services/domain/usuario.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
