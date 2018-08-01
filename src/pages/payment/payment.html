@@ -9,6 +9,7 @@
 
 <ion-content padding>
 
+  <!--Bind do formGroup com o que tá definido no script, e controla manualmente a página nextPage.-->
   <form [formGroup]="formGroup" (ngSubmit)="nextPage(); $event.preventDefault()">
     <ion-list radio-group formControlName="@type">
       <ion-list-header>
@@ -25,8 +26,9 @@
     </ion-list>
 
     <ion-item *ngIf="formGroup.value['@type'] == 'pagamentoComCartao'">
-      <ion-label stacked>Parcelas no boleto</ion-label>
+      <ion-label stacked>Parcelas no cartão</ion-label>
       <ion-select formControlName="numeroDeParcelas">
+        <!--Parcelas preenchidas no script com o valor padrão como sendo o valor já selecionado.-->
         <ion-option *ngFor="let n of parcelas; first as f" [value]="n" [selected]="f">{{n}}</ion-option>
       </ion-select>
     </ion-item>
