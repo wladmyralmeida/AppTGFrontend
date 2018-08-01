@@ -15,7 +15,7 @@
       <ion-card-header>
         Itens do pedido
       </ion-card-header>
-
+      
       <ion-list>
         <ion-item *ngFor="let item of cartItems">
           <ion-thumbnail item-start>
@@ -25,30 +25,30 @@
           <p>{{item.produto.preco | currency}}</p>
           <p class="nolinebreak">{{item.quantidade}}</p>
           <p item-end>{{item.produto.preco * item.quantidade | currency}}</p>
-        </ion-item>
+        </ion-item> 
 
         <ion-item>
           <h2>Total</h2>
           <h2 item-end>{{total() | currency}}</h2>
         </ion-item>
-      </ion-list>
+      </ion-list> 
     </ion-card>
 
     <ion-card>
-      <ion-card-header>
-        Usuário
-      </ion-card-header>
-      <ion-item>
-        <h2>{{usuario?.nome}}</h2>
-        <p>{{usuario?.email}}</p>
-      </ion-item>
+        <ion-card-header>
+          Usuário
+        </ion-card-header>
+        <ion-item>
+          <h2>{{usuario?.nome}}</h2>
+          <p>{{usuario?.email}}</p>
+        </ion-item>
     </ion-card>
-
+    
     <ion-card>
       <ion-card-header>
         Pagamento
       </ion-card-header>
-
+    
       <ion-item *ngIf="pedido.pagamento['@type']=='pagamentoComCartao'">
         <h3>Pagamento com cartão</h3>
         <p>Parcelas: {{pedido.pagamento.numeroDeParcelas}}</p>
@@ -64,13 +64,13 @@
 
   <div *ngIf="codpedido">
     <ion-card>
-      <ion-card-header>
-        Seu pedido foi registrado!
-      </ion-card-header>
-      <ion-item>
-        <h2>Código do pedido: {{codpedido}}</h2>
-        <p>Verifique seu email</p>
-      </ion-item>
+        <ion-card-header>
+          Seu pedido foi registrado!
+        </ion-card-header>
+        <ion-item>
+          <h2>Código do pedido: {{codpedido}}</h2>
+          <p>Verifique seu email</p>
+        </ion-item>
     </ion-card>
 
     <button ion-button block outline (click)="home()">Voltar</button>

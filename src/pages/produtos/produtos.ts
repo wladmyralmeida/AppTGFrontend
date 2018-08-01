@@ -12,6 +12,7 @@ import { LoadingController } from 'ionic-angular/components/loading/loading-cont
 })
 export class ProdutosPage {
 
+  //Sempre que buscar uma nova página, ela será concatenada com uma já existente.
   items: ProdutoDTO[] = [];
   page: number = 0;
 
@@ -26,18 +27,24 @@ export class ProdutosPage {
     this.loadData();
   }
 
+  //Todos os dados na nova função para que possa também ser chamada no refresh
   loadData() {
     let cat_id = this.navParams.get('cat_id');
+    //Abre o loader;
     let loader = this.presentLoading();
-    this.produtoService.findByCategoria(cat_id)
+    this.produtoService.findByCategoria(cat_id, this.page, 10)
       .subscribe(response => {
+        //tamanho que a lista tinha = 0, 10, 20, 30;
         let start = this.items.length;
+        //Concatenação
         this.items = this.items.concat(response['content']);
+        //tamanho que a lista tinha -1 = 9, 19, 29;
         let end = this.items.length - 1;
+        //Fecha o loader antes de carregar as imagens ou se acontecer algum erro;
         loader.dismiss();
         console.log(this.page);
         console.log(this.items);
-        //Somente é chamado depois de chegados os produtos
+        //Somente é chamado depois de chegados os produtos, 
         this.loadImageUrls(start, end);
       },
         error => {
@@ -64,6 +71,7 @@ export class ProdutosPage {
     this.navCtrl.push('ProdutoDetailPage', { produto_id: produto_id });
   }
 
+  //Durar o loading enquanto tiver carregando mesmo a página. Retornando o objeto para qualquer página que precisar.
   presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Aguarde..."
@@ -72,6 +80,7 @@ export class ProdutosPage {
     return loader;
   }
 
+  //Carrega os dados e dá o refresh em 1 segundo.
   doRefresh(refresher) {
     this.page = 0;
     this.items = [];

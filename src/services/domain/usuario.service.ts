@@ -37,7 +37,9 @@ export class UsuarioService {
     }
     
     uploadPicture(picture) {
+        //Converter img com base 64 para blob
         let pictureBlob = this.imageUtilService.dataUriToBlob(picture);
+        //Programa para upload de imagem com seu devido formato de dado.
         let formData : FormData = new FormData();
         formData.set('file', pictureBlob, 'file.png');
         return this.http.post(
