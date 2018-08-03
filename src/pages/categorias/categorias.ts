@@ -4,6 +4,13 @@ import { CategoriaService } from '../../services/domain/categoria.service';
 import { CategoriaDTO } from '../../models/categoria.dto';
 import { API_CONFIG } from '../../config/api.config';
 
+/**
+ * Generated class for the CategoriasPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
 @IonicPage()
 @Component({
   selector: 'page-categorias',
@@ -29,8 +36,7 @@ export class CategoriasPage {
       error => {});
   }
 
-  //Seja no push ou no root, incluir parâmetros e colocar os dados na forma de objeto.
-  showProdutos(cat_id : string) {
-    this.navCtrl.push('ProdutosPage', {cat_id: cat_id});    
+  showProdutos(categoria_id : string) {
+    this.navCtrl.push('ProdutosPage', {categoria_id: categoria_id});    
   }
 }

@@ -13,7 +13,6 @@ import { ProdutoDTO } from '../../models/produto.dto';
 })
 export class CartPage {
 
-  //Referência do HTML
   items: CartItem[];
 
   constructor(
@@ -24,7 +23,6 @@ export class CartPage {
   }
 
   ionViewDidLoad() {
-    //Além de pegar o carrinho, cria se não existir.
     let cart = this.cartService.getCart();
     this.items = cart.items;
     this.loadImageUrls();
@@ -33,7 +31,6 @@ export class CartPage {
   loadImageUrls() {
     for (var i=0; i<this.items.length; i++) {
       let item = this.items[i];
-      //item de carrinho, produto do carrinho, id.
       this.produtoService.getSmallImageFromBucket(item.produto.id)
         .subscribe(response => {
           item.produto.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${item.produto.id}-small.jpg`;
@@ -58,12 +55,11 @@ export class CartPage {
     return this.cartService.total();
   }  
 
-  //Método de Continuar Comprando
   goOn() {
     this.navCtrl.setRoot('CategoriasPage');
   }
 
   checkout() {
-    this.navCtrl.push('PaymentPage');
+    this.navCtrl.push('PickAddressPage');
   }
 }

@@ -10,10 +10,10 @@ log.txt
 *.sublime-project
 *.sublime-workspace
 .vscode/
+.vs/
 npm-debug.log*
 
 .idea/
-.ionic/
 .sourcemaps/
 .sass-cache/
 .tmp/
@@ -23,6 +23,7 @@ dist/
 node_modules/
 tmp/
 temp/
+hooks/
 platforms/
 plugins/
 plugins/android.json

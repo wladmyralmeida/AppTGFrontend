@@ -1,36 +1,74 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PedidoDTO } from '../../models/pedido.dto';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CartItem } from '../../models/cart-item';
+import { usuarioDTO } from '../../models/usuario.dto';
+import { UsuarioService } from '../../services/domain/usuario.service';
+import { CartService } from '../../services/domain/cart.service';
+import { PedidoService } from '../../services/domain/pedido.service';
 
 @IonicPage()
 @Component({
-  selector: 'page-payment',
-  templateUrl: 'payment.html',
+  selector: 'page-order-confirmation',
+  templateUrl: 'order-confirmation.html',
 })
 export class OrderConfirmationPage {
 
   pedido: PedidoDTO;
-
-  parcelas: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-  formGroup: FormGroup;
+  cartItems: CartItem[];
+  usuario: usuarioDTO;
+  endereco: EnderecoDTO;
+  codpedido: string;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public formBuilder: FormBuilder) {
+    public usuarioService: UsuarioService,
+    public cartService: CartService,
+    public pedidoService: PedidoService) {
 
     this.pedido = this.navParams.get('pedido');
-
-    this.formGroup = this.formBuilder.group({
-      numeroDeParcelas: [1, Validators.required],
-      "@type": ["pagamentoComCartao", Validators.required]
-    });
   }
 
-  nextPage() {
-    this.pedido.pagamento = this.formGroup.value;
-    this.navCtrl.setRoot('OrderConfirmationPage', {pedido: this.pedido});
+  ionViewDidLoad() {
+    this.cartItems = this.cartService.getCart().items;
+
+    this.usuarioService.findById(this.pedido.usuario.id)
+      .subscribe(response => {
+        this.usuario = response as usuarioDTO;
+      },
+      error => {
+        this.navCtrl.setRoot('HomePage');
+      });
+  }
+
+  total() : number {
+    return this.cartService.total();
+  } 
+
+  back() {
+    this.navCtrl.setRoot('CartPage');
+  }
+
+  home() {
+    this.navCtrl.setRoot('CategoriasPage');
+  }
+
+  checkout() {
+    this.pedidoService.insert(this.pedido)
+      .subscribe(response => {
+        this.cartService.createOrClearCart();
+        this.codpedido = this.extractId(response.headers.get('location'));
+      },
+      error => {
+        if (error.status == 403) {
+          this.navCtrl.setRoot('HomePage');
+        }
+      });
+  }
+
+  private extractId(location : string) : string {
+    let position = location.lastIndexOf('/');
+    return location.substring(position + 1, location.length);
   }
 }

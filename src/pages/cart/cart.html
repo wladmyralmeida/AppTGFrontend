@@ -24,12 +24,10 @@
       <h1>Total</h1>
       <h1 item-end>{{total()}}</h1>
     </ion-item>
-    <!--Quando o carrinho estiver vazio, o mesmo não mostrará sub total = 0, mas sim a mensagem de Carrinho Vazio.-->
     <ion-item *ngIf="total() <= 0">
       <h1>Seu carrinho está vazio</h1>
     </ion-item>
   </ion-list> 
   <button ion-button block (click)="goOn()">Continuar comprando</button>   
-  <!--Faz com que o botão de Finalizar só seja mostrado quando o carrinho estiver itemizado.-->
   <button *ngIf="total() > 0" ion-button color="secondary" block (click)="checkout()">Finalizar pedido</button>   
 </ion-content>

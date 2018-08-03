@@ -1,8 +1,7 @@
 {
-  "name": "PrototipoTG",
-  "app_id": "",
-  "type": "ionic-angular",
+  "name": "CursoSpringIonic",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "type": "ionic-angular"
 }
