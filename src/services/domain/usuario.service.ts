@@ -1,7 +1,7 @@
+import { UsuarioDTO } from './../../models/usuario.dto';
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { usuario } from "../../models/usuario.dto";
 import { API_CONFIG } from "../../config/api.config";
 import { StorageService } from "../storage.service";
 import { ImageUtilService } from "../image-util.service";
@@ -28,7 +28,7 @@ export class UsuarioService {
         return this.http.get(url, {responseType : 'blob'});
     }
 
-    insert(obj : usuario) {
+    insert(obj : UsuarioDTO) {
         return this.http.post(
             `${API_CONFIG.baseUrl}/usuarios`, 
             obj,
