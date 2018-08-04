@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StorageService } from '../../services/storage.service';
+import { UsuarioDTO } from '../../models/usuario.dto';
 import { UsuarioService } from '../../services/domain/usuario.service';
 import { API_CONFIG } from '../../config/api.config';
 import { CameraOptions, Camera } from '@ionic-native/camera';
@@ -22,7 +23,7 @@ export class ProfilePage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public storage: StorageService,
-    public UsuarioService: UsuarioService,
+    public usuarioService: UsuarioService,
     public camera: Camera,
     public sanitizer: DomSanitizer) {
 
@@ -36,9 +37,9 @@ export class ProfilePage {
   loadData() {
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
-      this.UsuarioService.findByEmail(localUser.email)
+      this.usuarioService.findByEmail(localUser.email)
         .subscribe(response => {
-          this.usuario = response as usuarioDTO;
+          this.usuario = response as UsuarioDTO;
           this.getImageIfExists();
         },
         error => {
@@ -53,9 +54,9 @@ export class ProfilePage {
   }
 
   getImageIfExists() {
-    this.UsuarioService.getImageFromBucket(this.usuario.id)
+    this.usuarioService.getImageFromBucket(this.usuario.id)
     .subscribe(response => {
-      this.usuario.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.usuario.id}.jpg`;
+      this.usuario.imageUrl = `${API_CONFIG.bucketBaseUrl}/up${this.usuario.id}.jpg`;
       this.blobToDataURL(response).then(dataUrl => {
         let str : string = dataUrl as string;
         this.profileImage = this.sanitizer.bypassSecurityTrustUrl(str);
@@ -116,7 +117,7 @@ export class ProfilePage {
   }
 
   sendPicture() {
-    this.UsuarioService.uploadPicture(this.picture)
+    this.usuarioService.uploadPicture(this.picture)
       .subscribe(response => {
         this.picture = null;
         this.getImageIfExists();

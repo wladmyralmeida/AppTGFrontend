@@ -1,3 +1,4 @@
+import { UsuarioService } from './../services/domain/usuario.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -15,7 +16,6 @@ import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ProdutoService } from '../services/domain/produto.service';
 import { CartService } from '../services/domain/cart.service';
 import { ImageUtilService } from '../services/image-util.service';
-import { UsuarioService } from '../services/domain/usuario.service';
 
 @NgModule({
   declarations: [

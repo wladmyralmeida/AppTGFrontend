@@ -1,9 +1,9 @@
+import { UsuarioDTO } from './../../models/usuario.dto';
+import { UsuarioService } from './../../services/domain/usuario.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PedidoDTO } from '../../models/pedido.dto';
 import { CartItem } from '../../models/cart-item';
-import { usuarioDTO } from '../../models/usuario.dto';
-import { UsuarioService } from '../../services/domain/usuario.service';
 import { CartService } from '../../services/domain/cart.service';
 import { PedidoService } from '../../services/domain/pedido.service';
 
@@ -16,8 +16,7 @@ export class OrderConfirmationPage {
 
   pedido: PedidoDTO;
   cartItems: CartItem[];
-  usuario: usuarioDTO;
-  endereco: EnderecoDTO;
+  usuario: UsuarioDTO;
   codpedido: string;
 
   constructor(
@@ -35,13 +34,13 @@ export class OrderConfirmationPage {
 
     this.usuarioService.findById(this.pedido.usuario.id)
       .subscribe(response => {
-        this.usuario = response as usuarioDTO;
+        this.usuario = response as UsuarioDTO;
       },
       error => {
         this.navCtrl.setRoot('HomePage');
       });
   }
-
+  
   total() : number {
     return this.cartService.total();
   } 
