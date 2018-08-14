@@ -27,7 +27,11 @@ export class MyApp {
       { title: 'Profile', component: 'ProfilePage' },
       { title: 'Categorias', component: 'CategoriasPage' },
       { title: 'Carrinho', component: 'CartPage'},
-      { title: 'Logout', component: ''}
+      { title: 'Logout', component: ''},
+      { title: 'Relatório', component: 'RelatorioPage'},
+      { title: 'Serviço', component: 'ServicoPage'},
+      { title: 'Desempenho', component: 'DesempenhoPage'},
+      { title: 'Estudos', component: 'EstudosPage'}
     ];
 
   }

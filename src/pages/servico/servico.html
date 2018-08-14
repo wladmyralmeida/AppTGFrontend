@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Serviços</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-fab top right edge>
+    <button navPush="ProfilePage" ion-fab mini>
+      <ion-icon name="person"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-list>
+    <ion-item>
+      <ion-label>Data</ion-label>
+      <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="event.month"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hora Inicial</ion-label>
+      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hora Final</ion-label>
+      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeFinish"></ion-datetime>
+    </ion-item>
+  </ion-list>
+
+    <h4>Tropa Operacional</h4>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-list>
+      <button ion-button *ngFor="let user of users" (click)="addService(user.id)" style="width: 100%; height: auto; padding: 8px;  position: relative; background : transparent;">
+        <ion-avatar item-start>
+          <img src="{{bucketUrl}}/up{{user.id}}.jpg" style="border-radius: 50%; height: 50px; width: 50px; position: absolute; top: 5px; left: 5px;">
+        </ion-avatar>
+        <p style = "font-weight: bold; color: black;">{{user.numero}} - {{user.nome}}</p>
+      </button>
+    </ion-list>
+  </ion-content>

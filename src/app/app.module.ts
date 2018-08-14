@@ -1,3 +1,6 @@
+import { EstudosService } from './../services/domain/estudos.service';
+import { DesempenhoService } from './../services/domain/desempenho.service';
+import { ServicoService } from './../services/domain/servico.service';
 import { UsuarioService } from './../services/domain/usuario.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +19,10 @@ import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ProdutoService } from '../services/domain/produto.service';
 import { CartService } from '../services/domain/cart.service';
 import { ImageUtilService } from '../services/image-util.service';
+import { RelatorioService } from '../services/domain/relatorio.service';
+import { Geolocation  } from '@ionic-native/geolocation';
+import { IonicStorageModule } from '@ionic/storage';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +32,7 @@ import { ImageUtilService } from '../services/image-util.service';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,7 +50,12 @@ import { ImageUtilService } from '../services/image-util.service';
     UsuarioService,
     ProdutoService,
     CartService,
-    ImageUtilService
+    ImageUtilService,
+    RelatorioService,
+    ServicoService,
+    DesempenhoService,
+    EstudosService,
+    Geolocation
   ]
 })
 export class AppModule {}

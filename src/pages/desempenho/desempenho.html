@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Google maps</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button full icon-left (click)="startTracking()" *ngIf=!isTracking>
+    <ion-icon name="locate"></ion-icon>
+    Começar Caminhada
+  </button>
+
+  <button ion-button full icon-left (click)="stopTracking()" *ngIf=isTracking>
+      <ion-icon name="locate"></ion-icon>
+      Parar Caminhada
+    </button>
+
+  <div #map id="map"></div>
+
+  <ion-list>
+    <ion-list-header>Caminhada Anterior</ion-list-header>
+    <ion-item *ngFor="let route of previousTracks">
+      {{ route.finished | date}}, {{ route.path.lenght }} Waypoints
+      <button ion-button clear item-end (click)="showHistoryRoute(route.path)">Ver Rota</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

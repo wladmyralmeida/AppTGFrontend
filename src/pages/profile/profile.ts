@@ -25,8 +25,10 @@ export class ProfilePage {
     public storage: StorageService,
     public usuarioService: UsuarioService,
     public camera: Camera,
+    //Permitir dar uma instrução explicita para autorizar a conversão.
     public sanitizer: DomSanitizer) {
 
+      //Garantir que sempre terá um valor para essa variável para que não dê erro.
       this.profileImage = 'assets/imgs/avatar-blank.png';
   }
 
@@ -57,8 +59,10 @@ export class ProfilePage {
     this.usuarioService.getImageFromBucket(this.usuario.id)
     .subscribe(response => {
       this.usuario.imageUrl = `${API_CONFIG.bucketBaseUrl}/up${this.usuario.id}.jpg`;
+      //Converter imagem em binário para imagem em dataUrlBase64
       this.blobToDataURL(response).then(dataUrl => {
         let str : string = dataUrl as string;
+        //Instrução de que a url não tem perigo, pode realizar a troca de imagem
         this.profileImage = this.sanitizer.bypassSecurityTrustUrl(str);
       });
     },
@@ -67,7 +71,7 @@ export class ProfilePage {
     });
   }
 
-  // https://gist.github.com/frumbert/3bf7a68ffa2ba59061bdcfc016add9ee
+  //https://gist.github.com/frumbert/3bf7a68ffa2ba59061bdcfc016add9ee
   blobToDataURL(blob) {
     return new Promise((fulfill, reject) => {
         let reader = new FileReader();

@@ -18,7 +18,15 @@ export class UsuarioService {
     findById(id: string) {
         return this.http.get(`${API_CONFIG.baseUrl}/usuarios/${id}`);
     }
-    
+
+    findByNome(nome: string) {
+        return this.http.get(`${API_CONFIG.baseUrl}/usuarios/nome?value=${nome}`);
+    }
+
+    findAll() : Observable<UsuarioDTO[]>  {
+        return this.http.get<UsuarioDTO[]>(`${API_CONFIG.baseUrl}/usuarios`);
+    }
+
     findByEmail(email: string) {
         return this.http.get(`${API_CONFIG.baseUrl}/usuarios/email?value=${email}`);
     }

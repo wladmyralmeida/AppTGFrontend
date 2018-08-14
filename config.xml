@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.nelioalves.cursospringbootionic" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Sistema de Pedidos</name>
-    <description>Um estudo de caso sobre Spring Boot e Ionic</description>
-    <author email="educandowebemail@gmail.com" href="https://www.udemy.com/user/nelio-alves/">Professor Nelio Alves</author>
+<widget id="br.com.prototipo" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Sistema de Gerenciamento EB</name>
+    <description>O aplicativo da sua Tropa!</description>
+    <author email="wladmyralmeida@gmail.com" href="https://www.facebook.com/wladmyralmeida">Wladmyr Almeida</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -76,12 +76,17 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
-    <engine name="android" spec="6.3.0" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-device" spec="^1.1.7" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
-    <engine name="browser" spec="~5.0.3" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
+    <engine name="browser" spec="5.0.3" />
+    <engine name="android" spec="6.3.0" />
+    <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
+    </plugin>
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+    <string> Esse App quer obter sua localização</string>
 </widget>
