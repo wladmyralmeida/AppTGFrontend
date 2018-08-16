@@ -1,15 +1,13 @@
+import { Geolocation } from '@ionic-native/geolocation';
 import { filter } from 'rxjs/operators';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Geolocation } from '@ionic-native/geolocation';
-import { AlertController, IonicPage, Platform } from 'ionic-angular';
+import { IonicPage, Platform, NavController } from 'ionic-angular';
 import { Subscription } from '../../../node_modules/rxjs';
 import { Storage } from  '@ionic/storage';
+//import { AlertController } from '../../../node_modules/ionic-angular/components/alert/alert-controller';
 
 declare var google;
 
-/**
- * https://developers.google.com/maps/documentation/javascript/directions
- */
 @IonicPage()
 @Component({
   selector: 'page-desempenho',
@@ -27,10 +25,10 @@ export class DesempenhoPage {
   postionSubscription: Subscription;
 
   constructor(
+    public navCtrl: NavController,
     private plt: Platform,
     private geolocation: Geolocation,
-    private storage: Storage,
-    private alertCtrl: AlertController
+    private storage: Storage
   ) {
 
   }
@@ -100,7 +98,7 @@ export class DesempenhoPage {
   }
 
   stopTracking() {
-    let newRoute = { finished: new Date().getTime, path: this.trackedRoute };
+    let newRoute = { finished: new Date().getTime(), path: this.trackedRoute };
     this.previousTracks.push(newRoute);
     this.storage.set('routes', this.previousTracks);
 
